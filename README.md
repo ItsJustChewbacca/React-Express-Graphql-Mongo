@@ -1,4 +1,4 @@
-# React-Apollo-Express-Mongoose-Mlab-Graphql
+# React-Apollo-Express-Mongoose-mLab-Graphql
 #### Built this project to gain more knowledge and practice with graphql along with React
 
 ## Tech Stack
@@ -28,20 +28,42 @@ Client Side
 - Run `Npm Install --save` in both the server file and client file
 -`npm install nodemon -g` if you haven't already
 - Create Mlab account for mongo instance
-- Grab Mlab credentials and replace:
+- Grab mLab credentials and replace:
 
 mongoose.connect('mongodb://username:password@ds121192.mlab.com:21192/gql');
 
-Within server/app.js with your Mlab db username and pass
-- Run `nodemon app` to start server app (listening on port 3000)
+Within server/app.js with your mLab db username and pass
+- Run `nodemon app` to start server app (listening on port 4000)
 -Navigate to `localhost:3000/graphql to open Graphiql
-- Run `Npm start` within the client folder to start React client side application (listening on port 4000)
+- Run `Npm start` within the client folder to start React client side application (listening on port 3000)
 
 Enjoy!!
 ```
 
 ### Project
+```
+App
+```
+!['App Client side'](https://github.com/ItsJustChewbacca/React-Express-Graphql-Mongo/blob/master/client/public/App.jpg?raw=true)
 
-!['Screenshot of Homepage']()
-!['Screenshot of Registration page']()
+```
+Creating Book
+```
+!['Creating Book'](https://github.com/ItsJustChewbacca/React-Express-Graphql-Mongo/blob/master/client/public/MakingBook.jpg?raw=true)
+
+```
+Book Created
+```
+!['Book Created'](https://github.com/ItsJustChewbacca/React-Express-Graphql-Mongo/blob/master/client/public/BookMade.jpg?raw=true)
+
+```
+Server side Application query using Graphiql
+```
+!['Server Side App'](https://github.com/ItsJustChewbacca/React-Express-Graphql-Mongo/blob/master/client/public/Graphiql.jpg?raw=true)
+
+```
+mLab Db
+```
+!['mLab'](https://github.com/ItsJustChewbacca/React-Express-Graphql-Mongo/blob/master/client/public/mLab2.jpg?raw=true)
+
 
