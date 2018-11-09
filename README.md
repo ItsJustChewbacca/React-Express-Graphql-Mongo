@@ -40,4 +40,8 @@ Within server/app.js with your Mlab db username and pass
 Enjoy!!
 ```
 
+### Project
+
+!['Screenshot of Homepage']()
+!['Screenshot of Registration page']()
 
