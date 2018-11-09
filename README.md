@@ -20,7 +20,7 @@ Client Side
     "react-scripts": "2.1.1"
 ```
 
-###Getting Started
+### Getting Started
 
 ```
 - Clone repo
