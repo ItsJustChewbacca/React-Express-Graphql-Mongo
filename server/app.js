@@ -2,8 +2,12 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const app = express();
+
+ // allow
+app.use(cors())
 
 // Connet to Mlab instance
 mongoose.connect('mongodb://Luke:redux11@ds121192.mlab.com:21192/gql');
