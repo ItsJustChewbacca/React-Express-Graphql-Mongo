@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 
 const bookSchema = new Schema({
-  name: string,
-  genre: string,
-  authorid: string
+  name: String,
+  genre: String,
+  authorid: String
 });
 
 module.exports = mongoose.model('Book', bookSchema);
