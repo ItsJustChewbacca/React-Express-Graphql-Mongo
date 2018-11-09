@@ -1,4 +1,5 @@
 # React-Apollo-Express-Mongoose-Mlab-Graphql
+#### Built this project to gain more knowledge and practice with graphql along with React
 
 ## Tech Stack
 ```
@@ -39,4 +40,4 @@ Within server/app.js with your Mlab db username and pass
 Enjoy!!
 ```
 
-#### Built this project to gain more knowledge and practice with graphql along with React
+
