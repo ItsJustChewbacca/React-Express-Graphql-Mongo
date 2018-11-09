@@ -18,7 +18,7 @@ mongoose.connection.once('open', () => {
 
 app.use('/graphql', graphqlHTTP ({
   schema, // ES6
-  graphql: true
+  graphiql: true
 }));
 
 app.listen(4000, () => {
