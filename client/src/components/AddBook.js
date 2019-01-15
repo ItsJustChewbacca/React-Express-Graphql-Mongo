@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
 import { getAuthorsQuery, addBookMutation, getBooksQuery } from '../queries/queries';
 
+
 class AddBook extends Component {
   constructor(props){
     super(props);
@@ -21,6 +22,7 @@ class AddBook extends Component {
       })
     }
   }
+
   submitForm(e) {
     e.preventDefault();
     this.props.addBookMutation({
@@ -28,6 +30,23 @@ class AddBook extends Component {
         name: this.state.name,
         genre: this.state.genre,
         authorid: this.state.authorid
+      }, 
+      optimisticResponse: {
+        __typename: "Mutation",
+        addBook: {
+          __typename: "Book",
+          name: this.state.name,
+          genre: this.state.genre,
+          id: this.state.authorid
+        }
+      },
+      update: (proxy, { data: { addBook } }) => {
+      // Read the data from our cache for this query.
+      const data = proxy.readQuery({ query: getBooksQuery });
+      // Add our comment from the mutation to the end.
+      data.books.push(addBook);
+      // Write our data back to the cache.
+      proxy.writeQuery({ query: getBooksQuery, data });
       },
       refetchQueries: [{ query: getBooksQuery }]
     })
