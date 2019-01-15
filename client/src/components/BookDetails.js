@@ -26,7 +26,6 @@ class BookDetails extends Component {
       }
   }
   render() {
-    console.log(this.props)
     return (
       <div id="book-details">
       {this.displayBookDetails()}
@@ -34,7 +33,6 @@ class BookDetails extends Component {
     );
   }
 }
-
 export default graphql(getBookQuery,{
   options: (props) => {
     return {
