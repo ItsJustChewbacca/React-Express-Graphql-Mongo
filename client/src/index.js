@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App, { waitOnCache } from './App';
+import * as serviceWorker from './serviceWorker';
 
+// Wait for the cache to sync before starting the app
+waitOnCache.then(() => {
+	ReactDOM.render(<App />, document.getElementById('root'));
+})
 
-ReactDOM.render(<App />, document.getElementById('root'));
+serviceWorker.register();
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
