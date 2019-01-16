@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App, { waitOnCache } from './App';
+import App, { waitOnCache, client } from './App';
+import { restoreRequests } from './components/OfflineMutation'
 import * as serviceWorker from './serviceWorker';
+
 
 // Wait for the cache to sync before starting the app
 waitOnCache.then(() => {
+	restoreRequests(client)
 	ReactDOM.render(<App />, document.getElementById('root'));
 })
 

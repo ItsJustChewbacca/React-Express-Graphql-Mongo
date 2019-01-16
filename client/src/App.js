@@ -15,7 +15,7 @@ const storage = window.localStorage
 
 // apollo client setup
 // Construct the client with our new link
-const client = new ApolloClient({ cache, link })
+ export const client = new ApolloClient({ cache, link })
 
 // Use an InMemoryCache, but keep it synced to localStorage
 

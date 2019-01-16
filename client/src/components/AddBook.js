@@ -23,33 +23,35 @@ class AddBook extends Component {
     }
   }
 
+
   submitForm(e) {
-    e.preventDefault();
-    this.props.addBookMutation({
-      variables: {
-        name: this.state.name,
-        genre: this.state.genre,
-        authorid: this.state.authorid
-      }, 
-      optimisticResponse: {
-        __typename: "Mutation",
-        addBook: {
-          __typename: "Book",
-          name: this.state.name,
-          genre: this.state.genre,
-          id: this.state.authorid
-        }
-      },
-      update: (proxy, { data: { addBook } }) => {
-      // Read the data from our cache for this query.
-      const data = proxy.readQuery({ query: getBooksQuery });
-      // Add our comment from the mutation to the end.
-      data.books.push(addBook);
-      // Write our data back to the cache.
-      proxy.writeQuery({ query: getBooksQuery, data });
-      },
-      refetchQueries: [{ query: getBooksQuery }]
-    })
+  e.preventDefault();
+  const id = Math.random()
+  const mutation = 'addBook'
+
+
+  const params = {
+   variables: {
+     name: this.state.name,
+     genre: this.state.genre,
+     authorid: this.state.authorid
+   },
+   optimisticResponse: {
+     __optimistic: true,
+     __typename: "Mutation",
+     addBook: {
+       __typename: "Book",
+       name: this.state.name,
+       genre: this.state.genre,
+       id: this.state.authorid
+     }
+   },
+   update: updateAddBookMutation,
+   refetchQueries: [{ query: getBooksQuery }]
+    };
+
+    OfflineHelper.store({ id, params, mutation })
+    this.props.addBookMutation(params)
   }
   render() {
 
@@ -79,6 +81,11 @@ class AddBook extends Component {
     );
   }
 }
+  export const updateAddBookMutation = (proxy, { data: { addBook } }) => {
+    const data = proxy.readQuery({ query: getBooksQuery });
+    data.books.push(addBook);
+    proxy.writeQuery( { query: getBooksQuery, data });
+  }
 
 export default compose(
   graphql(getAuthorsQuery, {name: "getAuthorsQuery"}),
