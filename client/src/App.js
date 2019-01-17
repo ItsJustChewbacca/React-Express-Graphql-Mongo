@@ -7,19 +7,19 @@ import { persistCache } from 'apollo-cache-persist';
 import BookList from './components/Booklist';
 import AddBook from './components/AddBook';
 
-const retry = new RetryLink({ attempts : { max : Infinity } }) 
-const http = new HttpLink({ uri : 'http://localhost:4000/graphql' })
-const link = concat(retry, http)
-const cache = new InMemoryCache()
-const storage = window.localStorage
+const retry = new RetryLink({ attempts : { max : Infinity } }) ;
+const http = new HttpLink({ uri : 'http://localhost:4000/graphql' });
+const link = concat(retry, http);
+const cache = new InMemoryCache();
+const storage = window.localStorage;
 
 // apollo client setup
 // Construct the client with our new link
- export const client = new ApolloClient({ cache, link })
+export const client = new ApolloClient({ cache, link });
 
 // Use an InMemoryCache, but keep it synced to localStorage
 
-export const waitOnCache = persistCache({ cache, storage })
+export const waitOnCache = persistCache({ cache, storage });
 
 // Use concat to add RetryLink between HttpLink and Apollo client
 
