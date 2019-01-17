@@ -1,13 +1,15 @@
-import React from 'react';
-import { Mutation } from 'react-apollo';
 import { updateAddBookMutation } from '../components/AddBook';
 
 function getPending() {
-  return JSON.parse(localStorage.getItem('addBook')) || []
+  return JSON.parse(localStorage.getItem('offlineMutations')) || []
 }
 
 function setPending(mutations) {
-  localStorage.setItem('addBook', JSON.stringify(mutations))
+  localStorage.setItem('offlineMutations', JSON.stringify(mutations))
+}
+
+export function addOfflineMutation(mutation) {
+  setPending(getPending().concat(mutation));
 }
 
 function updateHandler(resp) {
@@ -15,7 +17,7 @@ function updateHandler(resp) {
   else return () => {}
 }
 
-function proxyUpdateForId(id) {
+export function proxyUpdateForId(id) {
   return (proxy, resp) => {
     updateHandler(resp)(proxy, resp)
     if (resp.data.__optimistic) return
@@ -33,18 +35,3 @@ export function restoreRequests(client) {
     client.mutate(params)
   })
 }
-
-export const OfflineMutation = props => (
-  <Mutation {...props}>
-    {(mutationFunction, result) => {
-      return props.children(params => {
-        const id = Math.random();
-        const { mutation } = props;
-        params.optimisticResponse.__optimistic = true;
-        setPending(getPending().concat({ id, params, mutation }));
-        params.update = proxyUpdateForId(id);
-        return mutationFunction(params);
-      });
-    }}
-  </Mutation>
-)
